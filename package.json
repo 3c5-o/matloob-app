@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp dist/source.html dist/index.html && rm dist/source.html",
     "preview": "vite preview",
     "android:add": "npx cap add android",
     "android:sync": "npm run build && npx cap sync android"
