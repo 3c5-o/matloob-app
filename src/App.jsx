@@ -55,7 +55,7 @@ function Toast({ message, onClose }) {
 }
 
 function Splash() {
-  return <div className="splash"><div className="splash-glow"/><img src={`${import.meta.env.BASE_URL}icon-192.webp`} /><h1>مطلوب</h1><p>{APP_CONFIG.tagline}</p></div>
+  return <div className="splash"><div className="splash-glow"/><img src={`${import.meta.env.BASE_URL}icon-512.webp`} /><h1>مطلوب</h1><p>{APP_CONFIG.tagline}</p></div>
 }
 
 function Onboarding({ onDone }) {
@@ -293,7 +293,7 @@ function SettingsScreen({ profile, onBack, onToast }) {
     <button onClick={enableNotifications}><BellRing/><span><b>إشعارات التطبيق</b><small>العروض والرسائل وتحديثات الطلبات</small></span><span>{notifyBusy?'...':'تفعيل'}</span></button>
     <button><Moon/><span><b>المظهر</b><small>الوضع الداكن هو الهوية الافتراضية لمطلوب</small></span><span>داكن</span></button>
     <button><Globe2/><span><b>اللغة</b><small>واجهة عربية واتجاه RTL</small></span><span>العربية</span></button>
-    <button onClick={()=>window.open('mailto:support@matloob.app','_self')}><ShieldCheck/><span><b>الدعم والخصوصية</b><small>للمشاكل والبلاغات المتعلقة بالحساب</small></span><ChevronLeft/></button>
+    <button onClick={()=>onToast('قسم الدعم داخل التطبيق قيد التجهيز للإصدار الأول.')}><ShieldCheck/><span><b>الدعم والخصوصية</b><small>المساعدة والبلاغات وسياسة الخصوصية</small></span><ChevronLeft/></button>
   </div></main></div>
 }
 
