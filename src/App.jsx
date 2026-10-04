@@ -39,7 +39,7 @@ function typeInfo(key) { return REQUEST_TYPES.find(x => x.key === key) || REQUES
 
 function AppLogo({ compact = false }) {
   return <div className={cx('brand', compact && 'brand--compact')}>
-    <img src={`${import.meta.env.BASE_URL}icon.svg`} alt="مطلوب" />
+    <img src={`${import.meta.env.BASE_URL}icon-192.webp`} alt="مطلوب" />
     <div><strong>مطلوب</strong>{!compact && <span>{APP_CONFIG.tagline}</span>}</div>
   </div>
 }
@@ -55,7 +55,7 @@ function Toast({ message, onClose }) {
 }
 
 function Splash() {
-  return <div className="splash"><div className="splash-glow"/><img src={`${import.meta.env.BASE_URL}icon.svg`} /><h1>مطلوب</h1><p>{APP_CONFIG.tagline}</p></div>
+  return <div className="splash"><div className="splash-glow"/><img src={`${import.meta.env.BASE_URL}icon-512.webp`} /><h1>مطلوب</h1><p>{APP_CONFIG.tagline}</p></div>
 }
 
 function Onboarding({ onDone }) {
