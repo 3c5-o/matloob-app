@@ -1,12 +1,3 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-
-export default defineConfig(() => ({
-  plugins: [react()],
-  base: './',
-  build: {
-    target: 'es2020',
-    sourcemap: false,
-    chunkSizeWarningLimit: 800
-  }
-}))
+export default defineConfig({plugins:[react()],base:'./',build:{target:'es2020',sourcemap:false,chunkSizeWarningLimit:800}})
