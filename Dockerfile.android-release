@@ -1,0 +1,36 @@
+FROM ghcr.io/cirruslabs/android-sdk:35 AS build
+
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates curl \
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y --no-install-recommends nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /src
+COPY package*.json ./
+RUN npm install --no-audit --no-fund
+COPY . .
+
+RUN npm run build \
+    && npx cap add android \
+    && npx cap sync android \
+    && chmod +x android/gradlew \
+    && cd android \
+    && ./gradlew assembleRelease --no-daemon
+
+FROM ghcr.io/cirruslabs/android-sdk:35
+
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends python3 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /srv
+COPY --from=build /src/android/app/build/outputs/apk/release/app-release-unsigned.apk /srv/app-release-unsigned.apk
+COPY railway-android-start.sh /usr/local/bin/matloob-start
+RUN chmod +x /usr/local/bin/matloob-start
+
+ENV PORT=8080
+EXPOSE 8080
+CMD ["/usr/local/bin/matloob-start"]
